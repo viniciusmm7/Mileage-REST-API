@@ -44,35 +44,35 @@ C:\Users\seu-user\Downloads\Mileage-REST-API>python main.py
 ## 2. `put(id:int, dados:dict)` - Adicionar novas informações no banco de dados:
 ```python
 >>> from main import *
->>> data = [{"piloto": "Amaral", "modelo": "Senna", "marca": "McLaren", "motor": 4.0},
-...         {"piloto": "Luciano", "modelo": "488 Spider", "marca": "Ferrari", "motor": 3.9},
-...         {"piloto": "Luis", "modelo": "Urus", "marca": "Lamborghini", "motor": 4.0},
-...         {"piloto": "Gustavo", "modelo": "918 Spyder", "marca": "Porsche", "motor": 4.6},
-...         {"piloto": "Bruno", "modelo": "AMG GT", "marca": "Mercedes-benz", "motor": 4.0}]
+>>> data = [{'piloto': 'Amaral', 'modelo': 'Senna', 'marca': 'McLaren', 'motor': '4.0'},
+...         {'piloto': 'Luciano', 'modelo': '488 Spider', 'marca': 'Ferrari', 'motor': '3.9'},
+...         {'piloto': 'Luis', 'modelo': 'Urus', 'marca': 'Lamborghini', 'motor': '4.0'},
+...         {'piloto': 'Gustavo', 'modelo': '918 Spyder', 'marca': 'Porsche', 'motor': '4.6'},
+...         {'piloto': 'Bruno', 'modelo': 'AMG GT', 'marca': 'Mercedes-benz', 'motor': '4.0'}]
 >>> for id in data:
 ...     put(data.index(id), id)
 Iniciando put request no id 0:
-{'id': 0, 'piloto': 'Amaral', 'modelo': 'Senna', 'marca': 'McLaren', 'motor': 4.0}
+{'id': 0, 'piloto': 'Amaral', 'modelo': 'Senna', 'marca': 'McLaren', 'motor': '4.0'}
 Pressione ENTER para continuar
 
 
 Iniciando put request no id 1:
-{'id': 1, 'piloto': 'Luciano', 'modelo': '488 Spider', 'marca': 'Ferrari', 'motor': 3.9}
+{'id': 1, 'piloto': 'Luciano', 'modelo': '488 Spider', 'marca': 'Ferrari', 'motor': '3.9'}
 Pressione ENTER para continuar
 
 
 Iniciando put request no id 2:
-{'id': 2, 'piloto': 'Luis', 'modelo': 'Urus', 'marca': 'Lamborghini', 'motor': 4.0}
+{'id': 2, 'piloto': 'Luis', 'modelo': 'Urus', 'marca': 'Lamborghini', 'motor': '4.0'}
 Pressione ENTER para continuar
 
 
 Iniciando put request no id 3:
-{'id': 3, 'piloto': 'Gustavo', 'modelo': '918 Spyder', 'marca': 'Porsche', 'motor': 4.6}
+{'id': 3, 'piloto': 'Gustavo', 'modelo': '918 Spyder', 'marca': 'Porsche', 'motor': '4.6'}
 Pressione ENTER para continuar
 
 
 Iniciando put request no id 4:
-{'id': 4, 'piloto': 'Lister', 'modelo': 'AMG GT', 'marca': 'Mercedes-benz', 'motor': 4.0}
+{'id': 4, 'piloto': 'Lister', 'modelo': 'AMG GT', 'marca': 'Mercedes-benz', 'motor': '4.0'}
 Pressione ENTER para continuar
 ```
 
@@ -125,9 +125,9 @@ E no servidor:
 >>> patch(4, {'piloto': 'Vinícius',
 ...          'marca': 'Koenigsegg',
 ...          'modelo': 'Regera',
-...          'motor': 5.0})
+...          'motor': '5.0'})
 Iniciando patch request no id 4:
-{'id': 4, 'piloto': 'Vinícius', 'modelo': 'Regera', 'marca': 'Koenigsegg', 'motor': 5.0}
+{'id': 4, 'piloto': 'Vinícius', 'modelo': 'Regera', 'marca': 'Koenigsegg', 'motor': '5.0'}
 Pressione ENTER para continuar
 ```
 
@@ -144,7 +144,7 @@ Nome do piloto: Bruno
 Marca do carro: Italdesign
 Modelo do carro: Zerouno
 Motor do carro (exemplo: 1.0): 5.2
-{'id': 5, 'piloto': 'Bruno', 'modelo': 'Zerouno', 'marca': 'Italdesign', 'motor': 5.2}
+{'id': 5, 'piloto': 'Bruno', 'modelo': 'Zerouno', 'marca': 'Italdesign', 'motor': '5.2'}
 Pressione ENTER para continuar
 ```
 
@@ -183,7 +183,7 @@ Nome do piloto: Ricardo
 Marca do carro: Aston Martin
 Modelo do carro: Vulcan
 Motor do carro (exemplo: 1.0): 7.0
-{'id': 4, 'piloto': 'Ricardo', 'modelo': 'Vulcan', 'marca': 'Aston Martin', 'motor': 7.0}
+{'id': 4, 'piloto': 'Ricardo', 'modelo': 'Vulcan', 'marca': 'Aston Martin', 'motor': '7.0'}
 ```
 
 E no servidor:
@@ -217,7 +217,7 @@ E no servidor:
 ```python
 >>> get(3)
 Iniciando get request:
-{'id': 3, 'piloto': 'Gustavo', 'modelo': '918 Spyder', 'marca': 'Porsche', 'motor': 4.6}
+{'id': 3, 'piloto': 'Gustavo', 'modelo': '918 Spyder', 'marca': 'Porsche', 'motor': '4.6'}
 Pressione ENTER para continuar
 ```
 
@@ -230,15 +230,15 @@ E no servidor:
 ```python
 >>> get_by(column=Carros.piloto)
 Iniciando get_by request:
-OrderedDict([('id', 0), ('piloto', 'Amaral'), ('modelo', 'Senna'), ('marca', 'McLaren'), ('motor', 4.0)])
+OrderedDict([('id', 0), ('piloto', 'Amaral'), ('modelo', 'Senna'), ('marca', 'McLaren'), ('motor', '4.0')])
 
-OrderedDict([('id', 3), ('piloto', 'Gustavo'), ('modelo', '918 Spyder'), ('marca', 'Porsche'), ('motor', 4.6)])
+OrderedDict([('id', 3), ('piloto', 'Gustavo'), ('modelo', '918 Spyder'), ('marca', 'Porsche'), ('motor', '4.6')])
 
-OrderedDict([('id', 1), ('piloto', 'Luciano'), ('modelo', '488 Spider'), ('marca', 'Ferrari'), ('motor', 3.9)])
+OrderedDict([('id', 1), ('piloto', 'Luciano'), ('modelo', '488 Spider'), ('marca', 'Ferrari'), ('motor', '3.9')])
 
-OrderedDict([('id', 2), ('piloto', 'Luis'), ('modelo', 'Urus'), ('marca', 'Lamborghini'), ('motor', 4.0)])
+OrderedDict([('id', 2), ('piloto', 'Luis'), ('modelo', 'Urus'), ('marca', 'Lamborghini'), ('motor', '4.0')])
 
-OrderedDict([('id', 4), ('piloto', 'Ricardo'), ('modelo', 'Vulcan'), ('marca', 'Aston Martin'), ('motor', 7.0)])
+OrderedDict([('id', 4), ('piloto', 'Ricardo'), ('modelo', 'Vulcan'), ('marca', 'Aston Martin'), ('motor', '7.0')])
 
 Pressione ENTER para continuar
 ```
@@ -250,15 +250,15 @@ O padrão para o parâmetro `Column` é `Carros.motor`, então solicitar:
 Retornará ordenado pelo motor:
 ```
 Iniciando get_by request:
-OrderedDict([('id', 1), ('piloto', 'Luciano'), ('modelo', '488 Spider'), ('marca', 'Ferrari'), ('motor', 3.9)])
+OrderedDict([('id', 1), ('piloto', 'Luciano'), ('modelo', '488 Spider'), ('marca', 'Ferrari'), ('motor', '3.9')])
 
-OrderedDict([('id', 0), ('piloto', 'Amaral'), ('modelo', 'Senna'), ('marca', 'McLaren'), ('motor', 4.0)])
+OrderedDict([('id', 0), ('piloto', 'Amaral'), ('modelo', 'Senna'), ('marca', 'McLaren'), ('motor', '4.0')])
 
-OrderedDict([('id', 2), ('piloto', 'Luis'), ('modelo', 'Urus'), ('marca', 'Lamborghini'), ('motor', 4.0)])
+OrderedDict([('id', 2), ('piloto', 'Luis'), ('modelo', 'Urus'), ('marca', 'Lamborghini'), ('motor', '4.0')])
 
-OrderedDict([('id', 3), ('piloto', 'Gustavo'), ('modelo', '918 Spyder'), ('marca', 'Porsche'), ('motor', 4.6)])
+OrderedDict([('id', 3), ('piloto', 'Gustavo'), ('modelo', '918 Spyder'), ('marca', 'Porsche'), ('motor', '4.6')])
 
-OrderedDict([('id', 4), ('piloto', 'Ricardo'), ('modelo', 'Vulcan'), ('marca', 'Aston Martin'), ('motor', 7.0)])
+OrderedDict([('id', 4), ('piloto', 'Ricardo'), ('modelo', 'Vulcan'), ('marca', 'Aston Martin'), ('motor', '7.0')])
 
 Pressione ENTER para continuar
 ```
@@ -267,15 +267,15 @@ Pressione ENTER para continuar
 ```python
 >>> get_all()
 Iniciando get_all request:
-OrderedDict([('id', 0), ('piloto', 'Amaral'), ('modelo', 'Senna'), ('marca', 'McLaren'), ('motor', 4.0)])
+OrderedDict([('id', 0), ('piloto', 'Amaral'), ('modelo', 'Senna'), ('marca', 'McLaren'), ('motor', '4.0')])
 
-OrderedDict([('id', 1), ('piloto', 'Luciano'), ('modelo', '488 Spider'), ('marca', 'Ferrari'), ('motor', 3.9)])
+OrderedDict([('id', 1), ('piloto', 'Luciano'), ('modelo', '488 Spider'), ('marca', 'Ferrari'), ('motor', '3.9')])
 
-OrderedDict([('id', 2), ('piloto', 'Luis'), ('modelo', 'Urus'), ('marca', 'Lamborghini'), ('motor', 4.0)])
+OrderedDict([('id', 2), ('piloto', 'Luis'), ('modelo', 'Urus'), ('marca', 'Lamborghini'), ('motor', '4.0')])
 
-OrderedDict([('id', 3), ('piloto', 'Gustavo'), ('modelo', '918 Spyder'), ('marca', 'Porsche'), ('motor', 4.6)])
+OrderedDict([('id', 3), ('piloto', 'Gustavo'), ('modelo', '918 Spyder'), ('marca', 'Porsche'), ('motor', '4.6')])
 
-OrderedDict([('id', 4), ('piloto', 'Ricardo'), ('modelo', 'Vulcan'), ('marca', 'Aston Martin'), ('motor', 7.0)])
+OrderedDict([('id', 4), ('piloto', 'Ricardo'), ('modelo', 'Vulcan'), ('marca', 'Aston Martin'), ('motor', '7.0')])
 
 Pressione ENTER para continuar
 ```
