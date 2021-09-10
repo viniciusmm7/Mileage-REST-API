@@ -30,6 +30,11 @@
 
 ### A API REST roda com base no endereço local `http://127.0.0.1:5000/carros/`
 
+### A instalação do arquivo `requirements.txt` deve ser feita antes de iniciar a aplicação da seguinte forma:
+```shell
+pip install -r requirements.txt
+```
+
 ## 1. Primeiramente o servidor deve ser iniciado como o exemplo:
 `Windows + R -> cmd -> ENTER`
 ```shell
