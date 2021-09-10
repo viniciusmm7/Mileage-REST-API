@@ -5,15 +5,16 @@ import requests
 
 app = Flask(__name__)
 api = Api(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Carros.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Mileage.db'
 db  = SQLAlchemy(app)
+BASE = 'http://127.0.0.1:5000/carros/'
 
 class Carros(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     piloto = db.Column(db.String(100), nullable=False)
     modelo = db.Column(db.String(50), nullable=False)
     marca = db.Column(db.String(20), nullable=False)
-    motor = db.Column(db.Float, nullable=False)
+    motor = db.Column(db.String(20), nullable=False)
 
     def __repr__(self):
         return f"Car(piloto = {piloto}, modelo = {modelo}, marca = {marca}, motor = {motor})"
@@ -22,20 +23,20 @@ car_put_args = reqparse.RequestParser()
 car_put_args.add_argument("piloto", type=str, help="O nome do piloto é obrigatório (string)", required=True)
 car_put_args.add_argument("modelo", type=str, help="O modelo do carro é obrigatório (string)", required=True)
 car_put_args.add_argument("marca", type=str, help="A marca do carro é obrigatória (string)", required=True)
-car_put_args.add_argument("motor", type=float, help="O motor é obrigatório (float)", required=True)
+car_put_args.add_argument("motor", type=str, help="O motor é obrigatório (float)", required=True)
 
 car_update_args = reqparse.RequestParser()
 car_update_args.add_argument("piloto", type=str, help="O nome do piloto deve ser do tipo String")
 car_update_args.add_argument("modelo", type=str, help="O modelo do carro deve ser do tipo String")
 car_update_args.add_argument("marca", type=str, help="A marca do carro deve ser do tipo String")
-car_update_args.add_argument("motor", type=float, help="O motor do carro deve ser do tipo Float/Double")
+car_update_args.add_argument("motor", type=str, help="O motor do carro deve ser do tipo String")
 
 resource_fields = {
     'id': fields.Integer,
     'piloto': fields.String,
     'modelo': fields.String,
     'marca': fields.String,
-    'motor': fields.Float
+    'motor': fields.String
 }
 
 db.create_all()
@@ -89,8 +90,6 @@ class Car(Resource):
         db.session.delete(Carros.query.get_or_404(id_carro))
         db.session.commit()
 
-BASE = 'http://127.0.0.1:5000/carros/'
-
 def _verifica_vazio(valor):
     while not valor:
         print('O valor não pode estar vazio')
@@ -101,27 +100,23 @@ def get(id:int):
     print('\nIniciando get request:', end='\n')
     response = requests.get(BASE + str(id))
     print(response.json())
-    input('Pressione ENTER para continuar\n')
 
 def get_by(column=Carros.motor):
     print('\nIniciando get_by request:', end='\n')
     response = Car.order_by(Car, column)
     for i in response:
         print(i, end='\n\n')
-    input('Pressione ENTER para continuar\n')
 
 def get_all():
     print('\nIniciando get_all request:', end='\n')
     response = Car.order_by(Car, Carros.id)
     for i in response:
         print(i, end='\n\n')
-    input('Pressione ENTER para continuar\n')
 
 def put(id:int, dados:dict):
     print(f'\nIniciando put request no id {id}:', end='\n')
     response = requests.put(BASE + str(id), dados)
     print(response.json())
-    input('Pressione ENTER para continuar\n')
 
 def put_input(id:int):
     print(f'\nIniciando put_input request no id {id}:', end='\n')
@@ -136,21 +131,8 @@ def put_input(id:int):
     modelo = input('Modelo do carro: ')
     modelo = _verifica_vazio(modelo)
 
-
-
-    # ===== Não funcionando direito
-    motor = input('Motor do carro (exemplo: 1.0): ')
-    while not motor:
-        motor = input('Motor do carro (exemplo: 1.0): ')
-        while True:
-            try:
-                motor = float(motor)
-            except:
-                break
+    motor = input('Motor do carro (exemplo: 1.0 turbo): ')
     motor = _verifica_vazio(motor)
-    # ==============================
-
-
 
     dados['piloto'] = piloto
     dados['modelo'] = modelo
@@ -159,13 +141,11 @@ def put_input(id:int):
 
     response = requests.put(BASE + str(id), dados)
     print(response.json())
-    input('Pressione ENTER para continuar\n')
 
 def patch(id:int, dados:dict):
     print(f'\nIniciando patch request no id {id}:', end='\n')
     response = requests.patch(BASE + str(id), dados)
     print(response.json())
-    input('Pressione ENTER para continuar\n')
 
 def patch_input(id:int):
     print(f'\nIniciando patch_input request no id {id}:', end='\n')
@@ -174,23 +154,14 @@ def patch_input(id:int):
     piloto = input('Nome do piloto: ')
     marca = input('Marca do carro: ')
     modelo = input('Modelo do carro: ')
-    motor = input('Motor do carro (exemplo: 1.0): ')
+    motor = input('Motor do carro (exemplo: 1.0 turbo): ')
 
-
-
-    # ===== Não funcionando direito
-    while True:
-        try:
-            motor = float(motor)
-        except:
-            motor = input('Motor do carro (exemplo: 1.0): ')
-            if not motor:
-                continue
-            else:
-                break
-    # ==============================
-
-
+    while not piloto and not marca and not modelo and not motor:
+        print('\nOs dados não podem estar todos vazios, tente novamente')
+        piloto = input('Nome do piloto: ')
+        marca = input('Marca do carro: ')
+        modelo = input('Modelo do carro: ')
+        motor = input('Motor do carro (exemplo: 1.0 turbo): ')
 
     dados['piloto'] = piloto
     dados['modelo'] = modelo
@@ -199,8 +170,6 @@ def patch_input(id:int):
 
     response = requests.patch(BASE + str(id), dados)
     print(response.json())
-    input('Pressione ENTER para continuar\n')
-
 
 def delete(id:int):
     print(f'\nIniciando delete request no id {id}:', end='\n')
@@ -212,7 +181,6 @@ def delete(id:int):
         pass
     elif response == True:
         print(f'Carro {str(id)} deletado com sucesso')
-    input('Pressione ENTER para continuar\n')
 
 api.add_resource(Car, "/carros/<int:id_carro>")
 
