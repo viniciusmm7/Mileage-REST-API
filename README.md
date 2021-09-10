@@ -41,7 +41,7 @@ C:\Users\seu-user>cd Downloads\Mileage-REST-API
 C:\Users\seu-user\Downloads\Mileage-REST-API>python main.py
 ```
 
-#### 2. put(id:int, dados:dict) - Adicionar novas informações no banco de dados:
+#### 2. `put(id:int, dados:dict)` - Adicionar novas informações no banco de dados:
 ```python
 >>> from main import *
 >>> data = [{"piloto": "Amaral", "modelo": "Senna", "marca": "McLaren", "motor": 4.0},
@@ -120,7 +120,7 @@ E no servidor:
 127.0.0.1 - - [10/Sep/2021 13:55:27] "PUT /carros/4 HTTP/1.1" 409 -
 ```
 
-#### 3. patch(id:int, dados:dict) - Atualizar as informações de um carro com base no id:
+#### 3. `patch(id:int, dados:dict)` - Atualizar as informações de um carro com base no id:
 ```python
 >>> patch(4, {'piloto': 'Vinícius',
 ...          'marca': 'Koenigsegg',
@@ -136,7 +136,7 @@ E no servidor (200 = OK):
 127.0.0.1 - - [10/Sep/2021 13:57:55] "PATCH /carros/4 HTTP/1.1" 200 -
 ```
 
-#### 4. put_input(id:int) - Adicionar novas informações no banco de dados com base em inputs:
+#### 4. `put_input(id:int)` - Adicionar novas informações no banco de dados com base em inputs:
 ```python
 >>> put_input(5)
 Iniciando put_input request no id 5:
@@ -169,7 +169,7 @@ E no servidor (409 = Conflito):
 127.0.0.1 - - [10/Sep/2021 14:15:43] "PUT /carros/5 HTTP/1.1" 409 -
 ```
 
-#### 5. patch_input(id:int) - Atualizar as informações de um carro com base no id por meio de inputs:
+#### 5. `patch_input(id:int)` - Atualizar as informações de um carro com base no id por meio de inputs:
 ```python
 >>> patch_input(id:int)
 Iniciando patch_input request no id 4:
@@ -191,7 +191,7 @@ E no servidor:
 127.0.0.1 - - [10/Sep/2021 14:19:09] "PATCH /carros/4 HTTP/1.1" 200 -
 ```
 
-#### 6. delete(id:int) - Deletar os dados de um carro com base no id:
+#### 6. `delete(id:int)` - Deletar os dados de um carro com base no id:
 ```python
 >>> delete(5)
 Iniciando delete request no id 5:
@@ -213,7 +213,7 @@ E no servidor:
 127.0.0.1 - - [10/Sep/2021 14:20:56] "GET /carros/5 HTTP/1.1" 404 -
 ```
 
-#### 7. get(id:int) - Acessar as informações de um carro pelo seu id no banco de dados:
+#### 7. `get(id:int)` - Acessar as informações de um carro pelo seu id no banco de dados:
 ```python
 >>> get(3)
 Iniciando get request:
@@ -226,7 +226,7 @@ E no servidor:
 127.0.0.1 - - [10/Sep/2021 14:25:08] "GET /carros/3 HTTP/1.1" 200 -
 ```
 
-#### 8. get_by(column=Carros.motor) - Acessar as informações ordenadas pela coluna desejada (`Carros.motor` é o padrão):
+#### 8. `get_by(column=Carros.motor)` - Acessar as informações ordenadas pela coluna desejada (`Carros.motor` é o padrão):
 ```python
 >>> get_by(column=Carros.piloto)
 Iniciando get_by request:
@@ -243,7 +243,7 @@ OrderedDict([('id', 4), ('piloto', 'Ricardo'), ('modelo', 'Vulcan'), ('marca', '
 Pressione ENTER para continuar
 ```
 
-O padrão para o atributo `Column` é `Carros.motor`, então solicitar:
+O padrão para o parâmetro `Column` é `Carros.motor`, então solicitar:
 ```python
 >>> get_by()
 ```
@@ -263,7 +263,7 @@ OrderedDict([('id', 4), ('piloto', 'Ricardo'), ('modelo', 'Vulcan'), ('marca', '
 Pressione ENTER para continuar
 ```
 
-#### 9. get_all() - Acessar a informação de todos os carros (ordenando com base dos IDs):
+#### 9. `get_all()` - Acessar a informação de todos os carros (ordenando com base dos IDs):
 ```python
 >>> get_all()
 Iniciando get_all request:
