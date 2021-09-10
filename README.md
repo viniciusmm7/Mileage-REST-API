@@ -42,7 +42,7 @@ C:\Users\seu-user\Downloads\Mileage-REST-API>python main.py
 ```
 
 #### 2. put(id:int, dados:dict) - Adicionar novas informações no banco de dados:
-```python shell
+```python
 >>> from main import *
 >>> data = [{"piloto": "Amaral", "modelo": "Senna", "marca": "McLaren", "motor": 4.0},
 ...         {"piloto": "Luciano", "modelo": "488 Spider", "marca": "Ferrari", "motor": 3.9},
