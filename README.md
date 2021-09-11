@@ -77,7 +77,7 @@ Pressione ENTER para continuar
 
 
 Iniciando put request no id 4:
-{'id': 4, 'piloto': 'Lister', 'modelo': 'AMG GT', 'marca': 'Mercedes-benz', 'motor': '4.0'}
+{'id': 4, 'piloto': 'Bruno', 'modelo': 'AMG GT', 'marca': 'Mercedes-benz', 'motor': '4.0'}
 Pressione ENTER para continuar
 ```
 
